@@ -33,9 +33,34 @@ const generateHint = () =>  {
 }
 
 const mastermind = (guess) => {
-  solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
-}
+  guess = 'acda'
+  solution = 'abcd';
+  var solutionArray = solution.split('')
+  var guessArray = guess.split('') 
+  var correctLetterLocations = 0
+  var correctLetters = 0
+    if(solution == guess){
+      console.log('you got it!')
+      return 'You guessed it!'
+    } else {
+    for(let i = 0; i <= guessArray.length - 1; i++){
+       if(solutionArray[i] === guessArray[i]) {
+       correctLetterLocations = correctLetterLocations + 1
+       let correctPosition = solutionArray[i] === guessArray[i]
+       console.log("Letter is at:", i, "It is:", guessArray[i], "CorrectPosition is:",correctPosition)
+       solutionArray[i] = null
+        }
+        } 
+      for(let i = 0; i <= solutionArray.length; i++){
+        let targetIndex = solutionArray.indexOf(guessArray[i])
+        if(targetIndex > -1){
+        correctLetters = correctLetters + 1
+        solutionArray[targetIndex] = null}
+      }
+      console.log("You have",correctLetterLocations, " letter and positions correct! And ", 
+        correctLetters, 'other letters correct but not positionally correct')
+    }  
+  }
 
 
 const getPrompt = () =>  {
